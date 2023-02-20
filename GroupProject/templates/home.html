@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+<!-- ========================= SECTION MAIN ========================= -->
+<section class="section-intro padding-y-sm">
+<div class="container">
+
+<div class="intro-banner-wrap">
+	<img src="{% static 'images/banners/tutor-banner.jpg' %}" class="img-fluid rounded">
+</div>
+
+</div> <!-- container //  -->
+</section>
+<!-- ========================= SECTION MAIN END// ========================= -->
+
+<!-- ========================= SECTION  ========================= -->
+<section class="section-name padding-y-sm">
+<div class="container">
+
+<header class="section-heading">
+	<a href="{% url 'store' %}" class="btn btn-outline-primary float-right">See all</a>
+	<h3 class="section-title">Popular Tutors</h3>
+</header><!-- sect-heading -->
+
+	
+<div class="row">
+	{% for account in accounts %}
+		<div class="col-md-3">
+			<div class="card card-product-grid">
+				{% if account.image %}
+				<a href="{% url 'account_detail' account.languages_choice account.first_name %}" class="img-wrap"> <img src="{{account.image.url}}"> </a>
+				{% endif %}
+				<figcaption class="info-wrap">
+					
+					<a href="{% url 'account_detail' account.languages_choice account.first_name %}" class="title">{{account.first_name}} {{account.last_name}}</a>
+					<div>{{account.languages_choice}}</div>
+					<div>{{account.description}}</div>
+					<div class="price mt-1">${{account.price_hour}}</div> <!-- price-wrap.// -->
+					<a href="{% url 'account_detail' account.languages_choice account.first_name %}" class="btn btn-block btn-primary">View details</a>
+
+				</figcaption>
+			</div>
+		</div> <!-- col.// -->
+	{% endfor %}
+</div> <!-- row.// -->
+
+</div><!-- container // -->
+</section>
+<!-- ========================= SECTION  END// ========================= -->
+
+
+
+
+
+</body>
+</html>
+
+{% endblock %}
